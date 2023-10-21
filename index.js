@@ -2,7 +2,7 @@ const mqtt = require('mqtt')
 
 const express = require('express')
 const app = express()
-const port_server = 3000
+const port_server = 80
 
 // serve files from the templates directory
 app.use(express.static('templates'));
