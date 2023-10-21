@@ -23,6 +23,8 @@ const client = mqtt.connect(connectUrl, {
 })
 
 const topic_con = '/nodejs/mqtt'
+const topic_ligar = 'servidor/resposta'
+const topic_desligar = 'servidor/resposta'
 
 client.on('connect', () => {
     console.log('Connected')
@@ -41,13 +43,28 @@ client.on('message', (topic, payload) => {
     console.log('Received Message:', topic, payload.toString())
 })
 
-app.post('/clicked', (req, res) => {
+app.post('/ligar_motor', (req, res) => {
     const click = { clickTime: new Date() };
     console.log(click);
     
-    client.subscribe([topic_con], () => {
-        console.log(`Subscribe to topic '${topic_con}'`)
-        client.publish(topic_con, 'irrigar', { qos: 0, retain: false }, (error) => {
+    client.subscribe([topic_ligar], () => {
+        console.log(`Subscribe to topic '${topic_ligar}'`)
+        client.publish(topic_ligar, 'ligar_motor', { qos: 0, retain: false }, (error) => {
+            if (error) {
+                console.error(error)
+            }
+        })
+    })
+});
+
+
+app.post('/desligar_motor', (req, res) => {
+    const click = { clickTime: new Date() };
+    console.log(click);
+    
+    client.subscribe([topic_desligar], () => {
+        console.log(`Subscribe to topic '${topic_desligar}'`)
+        client.publish(topic_desligar, 'desligar_motor', { qos: 0, retain: false }, (error) => {
             if (error) {
                 console.error(error)
             }
