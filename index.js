@@ -2,12 +2,13 @@ const mqtt = require('mqtt')
 
 const express = require('express')
 const app = express()
-const port_server = 80
+const PORT_SERVER = 80
+const HOST_SERVER = "0.0.0.0"
 
 // serve files from the templates directory
 app.use(express.static('templates'));
 
-const host = '192.168.0.110'
+const host = '0.0.0.0'
 const port = '1883'
 const clientId = `node_mqtt_${Math.random().toString(16).slice(3)}`
 
@@ -76,6 +77,6 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 })
 
-app.listen(port_server, () => {
-    console.log(`App rodando na porta:${port}`)
+app.listen(PORT_SERVER, HOST_SERVER, () => {
+    console.log(`Server running at http://${HOST_SERVER}:${PORT_SERVER}/`);
 });
