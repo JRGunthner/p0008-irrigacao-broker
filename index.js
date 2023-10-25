@@ -5,7 +5,6 @@ const app = express()
 const PORT_SERVER = 80
 const HOST_SERVER = "0.0.0.0"
 
-// serve files from the templates directory
 app.use(express.static('templates'));
 
 const host = 'irrigacao.jgtche.com.br'
@@ -47,7 +46,7 @@ client.on('message', (topic, payload) => {
 app.post('/ligar_motor', (req, res) => {
     const click = { clickTime: new Date() };
     console.log(click);
-    
+
     client.subscribe([topic_ligar], () => {
         console.log(`Subscribe to topic '${topic_ligar}'`)
         client.publish(topic_ligar, 'ligar_motor', { qos: 0, retain: false }, (error) => {
@@ -62,7 +61,7 @@ app.post('/ligar_motor', (req, res) => {
 app.post('/desligar_motor', (req, res) => {
     const click = { clickTime: new Date() };
     console.log(click);
-    
+
     client.subscribe([topic_desligar], () => {
         console.log(`Subscribe to topic '${topic_desligar}'`)
         client.publish(topic_desligar, 'desligar_motor', { qos: 0, retain: false }, (error) => {
