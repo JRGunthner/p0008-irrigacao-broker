@@ -8,7 +8,7 @@ const HOST_SERVER = "0.0.0.0"
 // serve files from the templates directory
 app.use(express.static('templates'));
 
-const host = '0.0.0.0'
+const host = 'irrigacao.jgtche.com.br'
 const port = '1883'
 const clientId = `node_mqtt_${Math.random().toString(16).slice(3)}`
 
