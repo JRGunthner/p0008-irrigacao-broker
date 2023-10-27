@@ -13,7 +13,7 @@ btnLigar.addEventListener('click', function (e) {
     certo.setAttribute('style', 'opacity: 1.0');
 
     setTimeout(() => {
-        btnLigar.setAttribute('style', 'opacity: 0.3');
+        btnLigar.setAttribute('style', 'opacity: 1.0');
         certo.setAttribute('style', 'opacity: 0.5');
         btnLigar.disabled = false;
     }, 5000);
