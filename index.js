@@ -47,9 +47,14 @@ app.post('/ligar_motor', (req, res) => {
     const click = { clickTime: new Date() };
     console.log(click);
 
+    let msg = {
+        "Id": 1,
+        "Msg": "ligar"
+    }
+
     client.subscribe([topic_ligar], () => {
         console.log(`Subscribe to topic '${topic_ligar}'`)
-        client.publish(topic_ligar, 'ligar_motor', { qos: 0, retain: false }, (error) => {
+        client.publish(topic_ligar, JSON.stringify(msg), { qos: 0, retain: false }, (error) => {
             if (error) {
                 console.error(error)
             }
@@ -61,10 +66,15 @@ app.post('/ligar_motor', (req, res) => {
 app.post('/desligar_motor', (req, res) => {
     const click = { clickTime: new Date() };
     console.log(click);
+    
+    let msg = {
+        "Id": 1,
+        "Msg": "desligar"
+    }
 
     client.subscribe([topic_desligar], () => {
         console.log(`Subscribe to topic '${topic_desligar}'`)
-        client.publish(topic_desligar, 'desligar_motor', { qos: 0, retain: false }, (error) => {
+        client.publish(topic_desligar, JSON.stringify(msg), { qos: 0, retain: false }, (error) => {
             if (error) {
                 console.error(error)
             }
