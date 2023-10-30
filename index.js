@@ -24,10 +24,16 @@ const topic_con = "nodejs/mqtt";
 const topic_ligar ="servidor/resposta";
 const topic_desligar = "servidor/resposta";
 
+const topicos = [
+    "nodejs/mqtt",
+    "servidor/resposta",
+    "resposta/motor"
+];
+
 client.on("connect", () => {
     console.log("Conectado ao servidor MQTT");
 
-    client.subscribe([topic_con], () => {
+    client.subscribe(topicos, () => {
         console.log(`Enviando '${topic_con}'`)
         client.publish(topic_con, "Broker conectado", { qos: 0, retain: false }, (error) => {
             if (error) {
